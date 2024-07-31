@@ -1,0 +1,259 @@
+parse_job_description_task:
+  description: >
+    Thoroughly analyze the provided Job Description PDF at {job_description} and extract all key information.
+  expected_output: >
+    Search the job description PDF at {job_description} and extract ALL relevant information in the following structured format:
+
+    Job Title: [Exact title as stated in the document]
+    
+    Company: [Company name if provided]
+    
+    Location: [Job location, including remote options if mentioned]
+    
+    Required Qualifications:
+    - [Qualification 1]
+    - [Qualification 2]
+    - ...
+
+    Preferred Qualifications:
+    - [Qualification 1]
+    - [Qualification 2]
+    - ...
+
+    Key Responsibilities:
+    - [Responsibility 1]
+    - [Responsibility 2]
+    - ...
+
+    Required Skills:
+    - [Skill 1]
+    - [Skill 2]
+    - ...
+
+    Preferred Skills:
+    - [Skill 1]
+    - [Skill 2]
+    - ...
+
+    Experience Required:
+    - [Experience requirement 1]
+    - [Experience requirement 2]
+    - ...
+
+    Education Requirements:
+    - [Education requirement 1]
+    - [Education requirement 2]
+    - ...
+
+    Company Culture and Values:
+    - [Value 1]
+    - [Value 2]
+    - ...
+
+    Benefits and Perks:
+    - [Benefit 1]
+    - [Benefit 2]
+    - ...
+
+    Application Instructions: [If provided]
+
+    Additional Information: [Any other relevant details not fitting above categories]
+
+    For each section, provide the specific query used to extract the information, for example:
+    Query: "What is the exact job title mentioned in the document?"
+    Result: [Job Title]
+
+    Ensure all sections are completed with relevant information from the job description. If a section is not applicable or information is not found, explicitly state "Not specified in the job description."
+
+parse_resume_task:
+  description: >
+    Thoroughly analyze the provided Resumes PDF at {resumes} and extract all key information of candidate.
+  expected_output: >
+    Search the resumes PDF at {resumes} and extract ALL relevant information of candidate in the following structured format:
+
+    Candidate 1:
+    Full Name: [Candidate's full name]
+    
+    Contact Information:
+    - Email: [Email address]
+    - Phone: [Phone number]
+    - Location: [City, State/Country]
+    - LinkedIn: [LinkedIn profile URL if provided]
+    
+    Education:
+    - Degree: [Degree name]
+      Institution: [University/College name]
+      Graduation Date: [Month Year or expected]
+      GPA: [If provided]
+    - [Repeat for each educational qualification]
+    
+    Work Experience:
+    - Job Title: [Most recent job title]
+      Company: [Company name]
+      Duration: [Start date - End date or Present]
+      Key Responsibilities:
+      - [Responsibility 1]
+      - [Responsibility 2]
+      - ...
+    - [Repeat for each work experience entry]
+    
+    Skills:
+    - [Skill 1]
+    - [Skill 2]
+    - ...
+    
+    Projects:
+    - Project Name: [Project title]
+      Description: [Brief description]
+      Technologies Used: [List of technologies]
+    - [Repeat for each project]
+    
+    Certifications:
+    - [Certification 1]
+    - [Certification 2]
+    - ...
+    
+    Languages:
+    - [Language 1: Proficiency level]
+    - [Language 2: Proficiency level]
+    - ...
+    
+    Achievements/Awards:
+    - [Achievement 1]
+    - [Achievement 2]
+    - ...
+    
+    Additional Information: [Any other relevant details not fitting above categories]
+
+    For each section, provide the specific query used to extract the information, for example:
+    Query: "What is the candidate's full name?"
+    Result: [Candidate's full name]
+
+    Ensure all sections are completed with relevant information from each resume. If a section is not applicable or information is not found, explicitly state "Not provided in the resume."
+
+
+summarize_information_task:
+  description: >
+    Create a concise summary highlighting key information of candidate's resume.
+  expected_output: >
+    Using the parsed resume data, create a summary of candidate in the following format:
+
+    Candidate: [Full Name]
+
+    Summary:
+    [First Name] is a [key descriptor, e.g., "seasoned software engineer" or "recent graduate in marketing"] with [X] years of experience in [key industry/field]. Their educational background includes [highest degree] in [field of study] from [institution]. [He/She] has demonstrated expertise in [2-3 key skills relevant to the job description]. Notable achievements include [1-2 significant accomplishments or projects]. [First Name]'s experience at [most relevant company] involved [brief description of responsibilities most aligned with the job description].
+
+    Key Qualifications:
+    - [Qualification 1 relevant to the job]
+    - [Qualification 2 relevant to the job]
+    - [Qualification 3 relevant to the job]
+
+    Technical Skills: [List of relevant technical skills]
+
+    Potential Value-add: [Brief statement on how the candidate's background could benefit the company]
+
+    Ensure the summaries capture the most relevant information for the hiring process, tailored to the job description requirements.
+
+  
+
+perform_fitment_analysis_task:
+  description: >
+    Perform a detailed fitment analysis by comparing resume summaries with the job description.Highlight strengths, weaknesses, risk areas, and questions to ask.
+  expected_output: >
+    Using the job description and candidate summary, perform a detailed fitment analysis of candidate:
+
+    Candidate: [Full Name]
+
+    Fitment Score: [1-10, where 10 is a perfect fit]
+
+    Strengths:
+    1. [Strength 1 that aligns with job requirements]
+    2. [Strength 2 that aligns with job requirements]
+    3. [Strength 3 that aligns with job requirements]
+    4. [Strength 4 that aligns with job requirements]
+    5. [Strength 5 that aligns with job requirements]
+
+    Weaknesses/Gaps:
+    1. [Weakness or gap 1 in relation to job requirements]
+    2. [Weakness or gap 2 in relation to job requirements]
+    3. [Weakness or gap 3 in relation to job requirements]
+
+    Potential Risks:
+    - [Risk 1, e.g., overqualification, frequent job changes]
+    - [Risk 2]
+    - [Risk 3]
+
+    Questions to Ask:
+    1. [Specific question to address gap or verify strength 1]
+    2. [Specific question to address gap or verify strength 2]
+    3. [Specific question to address gap or verify strength 3]
+    4. [Specific question to address gap or verify strength 4]
+    5. [Specific question to address gap or verify strength 5]
+
+    Overall Recommendation: [Brief statement on whether to proceed with an interview and why]
+
+    Present the analysis in a clear, structured format with Highlighting Headers, ensuring all sections are completed.
+ 
+
+prompt_human_input_task:
+  description: >
+    Ask Human for confirmation to schedule screening interviews based on fitment analysis.
+  expected_output: >
+    Based on the fitment analysis results, present the following to the human:
+
+    Candidate: [Full Name]
+    Fitment Score: [Score from analysis]
+    Key Strengths: [Brief list of top strengths]
+    Main Concerns: [Brief list of main weaknesses or risks]
+
+    Recommendation: [Proceed with interview / Do not proceed]
+
+    Please confirm whether to schedule a screening interview for this candidate (Yes/No):
+
+    Collect and return the human's decisions.
+    
+  
+
+craft_email_task:
+  description: >
+    Craft personalized emails based on the human's decision.
+  expected_output: >
+    craft a personalized email based on the human's decision:
+
+    If the decision is "Yes" (selected for interview):
+
+    Subject: Interview Invitation - [Job Title] at [Company Name]
+
+    Dear [Candidate Name],
+
+    [Paragraph 1: Express interest based on specific qualifications]
+
+    [Paragraph 2: Propose interview timeframe and request availability]
+
+    [Paragraph 3: Mention any specific instructions from the human]
+
+    [Closing paragraph]
+
+    Best regards,
+    [Your Name]
+    [Your Title]
+    [Company Name]
+
+    If the decision is "No" (not selected for interview):
+
+    Subject: Update on Your Application - [Job Title] at [Company Name]
+
+    Dear [Candidate Name],
+
+    [Paragraph 1: Thank the candidate for their interest]
+
+    [Paragraph 2: Politely inform that they were not selected for an interview]
+
+    [Paragraph 3: Provide encouragement and wish them well]
+
+    Best regards,
+    [Your Name]
+    [Your Title]
+    [Company Name]
+
+    Only create emails for candidate who received a response from the human input task. Ensure the email content is professional, personalized, and appropriate for the decision made.
