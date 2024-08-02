@@ -195,22 +195,22 @@ perform_fitment_analysis_task:
     Present the analysis in a clear, structured format with Highlighting Headers, ensuring all sections are completed.
  
 
-prompt_human_input_task:
-  description: >
-    Ask Human for confirmation to schedule screening interviews based on fitment analysis.
-  expected_output: >
-    Based on the fitment analysis results, present the following to the human:
+# prompt_human_input_task:
+#   description: >
+#     Ask Human for confirmation to schedule screening interviews based on fitment analysis.
+#   expected_output: >
+#     Based on the fitment analysis results, present the following to the human:
 
-    Candidate: [Full Name]
-    Fitment Score: [Score from analysis]
-    Key Strengths: [Brief list of top strengths]
-    Main Concerns: [Brief list of main weaknesses or risks]
+#     Candidate: [Full Name]
+#     Fitment Score: [Score from analysis]
+#     Key Strengths: [Brief list of top strengths]
+#     Main Concerns: [Brief list of main weaknesses or risks]
 
-    Recommendation: [Proceed with interview / Do not proceed]
+#     Recommendation: [Proceed with interview / Do not proceed]
 
-    Please confirm whether to schedule a screening interview for this candidate (Yes/No):
+#     Please confirm whether to schedule a screening interview for this candidate (Yes/No):
 
-    Collect and return the human's decisions.
+#     Collect and return the human's decisions.
     
   
 

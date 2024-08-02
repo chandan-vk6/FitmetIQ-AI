@@ -32,13 +32,13 @@ fitment_analysis:
   backstory: >
     You are an expert at fitment analysis, providing detailed insights on candidate suitability.
 
-human_interaction:
-  role: >
-    Human input collector Agent
-  goal: >
-    Collect human input and confirmation for scheduling screening interviews
-  backstory: >
-    You ensure human input is collected and processed to make final decisions on candidate interviews.
+# human_interaction:
+#   role: >
+#     Human input collector Agent
+#   goal: >
+#     Collect human input and confirmation for scheduling screening interviews
+#   backstory: >
+#     You ensure human input is collected and processed to make final decisions on candidate interviews.
 
 email_crafting:
   role: >

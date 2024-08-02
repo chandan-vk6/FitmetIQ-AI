@@ -7,15 +7,17 @@ import streamlit as st
 from datetime import datetime
 import json
 import os
+# from dotenv import load_dotenv
+# load_dotenv()
 # Uncomment the following line to use an example of a custom tool
 # from fitmentiq.tools.custom_tool import MyCustomTool
 
 # Check our tools documentations for more information on how to use them
 # from crewai_tools import SerperDevTool
-os.environ['GOOGLE_API_KEY']="AIzaSyBz34fG4xflXfY1iFnTr0fsLykgJ-5bnYo"
+os.environ['GOOGLE_API_KEY']=os.getenv('GOOGLE_API_KEY')
 os.environ['OPENAI_API_BASE'] = "https://api.groq.com/openai/v1"
 os.environ['OPENAI_MODEL_NAME'] = "llama3-groq-70b-8192-tool-use-preview"
-os.environ['OPENAI_API_KEY'] = "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"
+os.environ['OPENAI_API_KEY'] =os.getenv('OPENAI_API_KEY')
 
 
 @CrewBase
@@ -76,7 +78,12 @@ class FitmentiqCrew():
 			with st.chat_message("AI"):
 				st.write(f"Agent Name: {agent_name}")
 				output = agent_output.return_values
-				st.markdown(f"{output['output']}")
+				st.write(f"{output['output']}")
+				st.session_state.previous_results.append({"Agent_Name":agent_name, "output":output['output']})
+
+
+					
+					
 
 		# Handle unexpected formats
 		# else:
@@ -127,28 +134,28 @@ class FitmentiqCrew():
 			step_callback=lambda step: self.step_callback(step, "Fitment_analysis"),
 		)
 	
-	@agent
-	def human_interaction(self) -> Agent:
-		return Agent(
-			config=self.agents_config['human_interaction'],
-			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
-			verbose=True,
-			memory=False,
-			allow_delegation=False,
-			step_callback=lambda step: self.step_callback(step, "Human_interaction"),
-		)
+	# @agent
+	# def human_interaction(self) -> Agent:
+	# 	return Agent(
+	# 		config=self.agents_config['human_interaction'],
+	# 		# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+	# 		verbose=True,
+	# 		memory=False,
+	# 		allow_delegation=False,
+	# 		step_callback=lambda step: self.step_callback(step, "Human_interaction"),
+	# 	)
 	
 
-	@agent
-	def email_crafting(self) -> Agent:
-		return Agent(
-			config=self.agents_config['email_crafting'],
-			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
-			verbose=True,
-			memory=False,
-			allow_delegation=False,
-			step_callback=lambda step: self.step_callback(step, "Email_crafting"),
-		)
+	# @agent
+	# def email_crafting(self) -> Agent:
+	# 	return Agent(
+	# 		config=self.agents_config['email_crafting'],
+	# 		# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+	# 		verbose=True,
+	# 		memory=False,
+	# 		allow_delegation=False,
+	# 		step_callback=lambda step: self.step_callback(step, "Email_crafting"),
+	# 	)
 
 	@task
 	def parse_job_description_task(self) -> Task:
@@ -182,27 +189,28 @@ class FitmentiqCrew():
 			config=self.tasks_config['perform_fitment_analysis_task'],
 			agent=self.fitment_analysis(),
 			context=[self.parse_job_description_task(), self.summarize_information_task()],
+			# human_input = True,
 			output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_perform_fitment_analysis_task.md",
 		)
 	
-	@task
-	def prompt_human_input_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['prompt_human_input_task'],
-			agent=self.human_interaction(),
-			human_input=True,
-			output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_prompt_human_input_task.md",
-		)
+	# @task
+	# def prompt_human_input_task(self) -> Task:
+	# 	return Task(
+	# 		config=self.tasks_config['prompt_human_input_task'],
+	# 		agent=self.human_interaction(),
+	# 		human_input=True,
+	# 		output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_prompt_human_input_task.md",
+	# 	)
 	
-	@task
-	def craft_email_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['craft_email_task'],
-			agent=self.email_crafting(),
-			context=[self.parse_job_description_task(), self.prompt_human_input_task()],
-			output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_craft_email_task.md",
+	# @task
+	# def craft_email_task(self) -> Task:
+	# 	return Task(
+	# 		config=self.tasks_config['craft_email_task'],
+	# 		agent=self.email_crafting(),
+	# 		context=[self.perform_fitment_analysis_task()],
+	# 		output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_craft_email_task.md",
 
-		)
+	# 	)
 
 	@crew
 	def crew(self) -> Crew:
@@ -212,5 +220,6 @@ class FitmentiqCrew():
 			tasks=self.tasks, # Automatically created by the @task decorator
 			process=Process.sequential,
 			verbose=2,
+			full_output=True
 			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)

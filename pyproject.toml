@@ -9,11 +9,16 @@ python = ">=3.10,<=3.13"
 crewai = { extras = ["tools"], version = "^0.41.1" }
 google-generativeai = "^0.7.2"
 langchain-groq = "^0.1.8"
+langchain-openai = "^0.1.20"
+langchainhub = "^0.1.20"
+langchain-google-community = {extras = ["gmail"], version = "^1.0.7"}
+google-api-python-client = "^2.139.0"
+google-auth-httplib2 = "^0.2.0"
+google-auth-oauthlib = "^1.2.1"
+streamlit = "^1.37.0"
 
 [tool.poetry.scripts]
 fitmentiq = "fitmentiq.main:run"
-train = "fitmentiq.main:train"
-replay = "fitmentiq.main:replay"
 
 [build-system]
 requires = ["poetry-core"]
