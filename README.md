@@ -22,8 +22,12 @@ poetry lock
 poetry install
 ```
 ### Customizing
+I am using groq through openai ,if you want you can use openai 
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+Make sure you place your `credentials.json` file which you got from your google Auth in root folder.
+
+**Add your `OPENAI_API_KEY`  `GOOGLE_API_KEY`  `OPENAI_API_BASE` into the `.env` file**
+
 
 - Modify `src/fitmentiq/config/agents.yaml` to define your agents
 - Modify `src/fitmentiq/config/tasks.yaml` to define your tasks
@@ -37,7 +41,11 @@ To kickstart your crew of AI agents and begin task execution, run this from the 
 ```bash
 poetry run fitmentiq
 ```
+To watch the Agent outputs on Terminal you can run directly by moving in to src/fitmentiq/
 
+```bash
+streamlit run app.py
+```
 This command initializes the FitmentIQ Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
 This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
