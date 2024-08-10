@@ -17,6 +17,8 @@ google-auth-httplib2 = "^0.2.0"
 google-auth-oauthlib = "^1.2.1"
 streamlit = "^1.37.0"
 langgraph = "^0.2.3"
+langchain-core = "^0.2.29"
+openai = "^1.40.3"
 
 [tool.poetry.scripts]
 fitmentiq = "fitmentiq.main:run"
