@@ -41,10 +41,10 @@ To kickstart your crew of AI agents and begin task execution, run this from the 
 ```bash
 poetry run fitmentiq
 ```
-To watch the Agent outputs on Terminal you can run directly by moving in to src/fitmentiq/
+To watch the Agent outputs on Terminal you can run:
 
 ```bash
-streamlit run app.py
+streamlit run src/fitmentiq/app.py
 ```
 This command initializes the FitmentIQ Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
