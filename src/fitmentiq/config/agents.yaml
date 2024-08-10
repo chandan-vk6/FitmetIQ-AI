@@ -13,7 +13,7 @@ resume_parser:
   goal: >
     Search the {resumes} file and extract all informations
   backstory: >
-    You are skilled at reading resumes and extracting relevant details efficiently.
+    You are skilled at reading resumes and extracting details efficiently.
 
 summarizer:
   role: >
@@ -28,22 +28,9 @@ fitment_analysis:
   role: >
     Fitment Analysis Agent
   goal: >
-    Analyze resumes in comparison to the job description and identify strengths, weaknesses, risks, and questions to ask
+    Analyze resumes in comparison to the given job description and identify strengths, weaknesses, risks, and questions to ask
+
+    Job Description: {job_description}
   backstory: >
     You are an expert at fitment analysis, providing detailed insights on candidate suitability.
 
-# human_interaction:
-#   role: >
-#     Human input collector Agent
-#   goal: >
-#     Collect human input and confirmation for scheduling screening interviews
-#   backstory: >
-#     You ensure human input is collected and processed to make final decisions on candidate interviews.
-
-email_crafting:
-  role: >
-    Email Crafting Agent
-  goal: >
-    Craft personalized emails for candidates based on human confirmation to schedule screening interviews
-  backstory: >
-    You create well-crafted, personalized emails to communicate with candidates.
